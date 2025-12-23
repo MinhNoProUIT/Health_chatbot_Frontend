@@ -21,6 +21,7 @@ import BillingTest from "./pages/BillingTest";
 import BillingTestSimple from "./pages/BillingTestSimple";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import QueueManagement from "./pages/QueueManagement";
+import FeedbackPage from "./pages/FeedbackPage";
 
 const queryClient = new QueryClient();
 
@@ -49,14 +50,24 @@ const App = () => (
                             </ProtectedRoute>
                         }
                     />
-                    <Route path="/information" element={<HealthInformation />} />
-                    <Route path="/process" element={<ProtectedRoute><MedicalProcess /></ProtectedRoute>} />
+                    <Route
+                        path="/information"
+                        element={<HealthInformation />}
+                    />
+                    <Route
+                        path="/process"
+                        element={
+                            <ProtectedRoute>
+                                <MedicalProcess />
+                            </ProtectedRoute>
+                        }
+                    />
                     <Route path="/check-in" element={<QueueManagement />} />
                     <Route
                         path="/feedback"
                         element={
                             <ProtectedRoute>
-                                <FeedbackSurvey />
+                                <FeedbackPage />
                             </ProtectedRoute>
                         }
                     />
@@ -68,14 +79,26 @@ const App = () => (
                             </ProtectedRoute>
                         }
                     />
-                    <Route path="/medication-schedule" element={<MedicationSchedule />} />
+                    <Route
+                        path="/medication-schedule"
+                        element={<MedicationSchedule />}
+                    />
                     <Route path="/billing-test" element={<BillingTest />} />
-                    <Route path="/billing-test-simple" element={<BillingTestSimple />} />
+                    <Route
+                        path="/billing-test-simple"
+                        element={<BillingTestSimple />}
+                    />
                     <Route path="/register" element={<Register />} />
                     <Route path="/confirm-email" element={<ConfirmEmail />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/forgot-password" element={<ForgotPassword />} />
-                    <Route path="/confirm-forgot-password" element={<ConfirmForgotPassword />} />
+                    <Route
+                        path="/forgot-password"
+                        element={<ForgotPassword />}
+                    />
+                    <Route
+                        path="/confirm-forgot-password"
+                        element={<ConfirmForgotPassword />}
+                    />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                 </Routes>
