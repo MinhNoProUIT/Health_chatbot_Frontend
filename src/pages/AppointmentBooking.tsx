@@ -232,7 +232,7 @@ const AppointmentBooking = () => {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center p-4">
         <Card className="w-full max-w-md shadow-2xl border-0">
           <CardContent className="pt-12 pb-8 text-center">
             <div className="mb-6 flex justify-center">
@@ -252,7 +252,7 @@ const AppointmentBooking = () => {
                   setIsSubmitted(false);
                   setShowForm(false);
                 }}
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                className="w-full bg-gradient-primary hover:bg-primary-dark shadow-soft transition-smooth"
               >
                 Xem lịch hẹn của tôi
               </Button>
@@ -272,12 +272,12 @@ const AppointmentBooking = () => {
   // Hiển thị danh sách appointments nếu có
   if (!showForm && !loadingAppointments) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 py-12 px-4">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="flex justify-between items-center mb-8">
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+              <h1 className="text-4xl font-bold text-primary mb-2">
                 Lịch hẹn của tôi
               </h1>
               <p className="text-gray-600">
@@ -286,7 +286,7 @@ const AppointmentBooking = () => {
             </div>
             <Button
               onClick={() => setShowForm(true)}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              className="bg-gradient-primary hover:bg-primary-dark shadow-soft transition-smooth"
             >
               <Plus className="mr-2 h-4 w-4" />
               Đặt lịch mới
@@ -306,7 +306,7 @@ const AppointmentBooking = () => {
                 </p>
                 <Button
                   onClick={() => setShowForm(true)}
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                  className="bg-gradient-primary hover:bg-primary-dark shadow-soft transition-smooth"
                 >
                   <Plus className="mr-2 h-4 w-4" />
                   Đặt lịch ngay
@@ -317,7 +317,7 @@ const AppointmentBooking = () => {
             <div className={appointments.length === 1 ? "max-w-2xl mx-auto" : "grid grid-cols-1 md:grid-cols-2 gap-6"}>
               {appointments.map((appointment) => (
                 <Card key={appointment.appointmentId} className="shadow-lg border-0 hover:shadow-xl transition-shadow">
-                  <CardHeader className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                  <CardHeader className="bg-gradient-primary text-primary-foreground">
                     <div className="flex justify-between items-start">
                       <CardTitle className="text-xl">
                         {appointment.hospitalName}
@@ -341,7 +341,7 @@ const AppointmentBooking = () => {
                     <div className="border-t pt-4">
                       {/* Bác sĩ */}
                       <div className="flex items-center gap-2 mb-2">
-                        <Stethoscope className="h-4 w-4 text-purple-600" />
+                        <Stethoscope className="h-4 w-4 text-primary" />
                         <span className="font-semibold text-gray-900">{appointment.doctorName}</span>
                       </div>
                       <div className="flex items-center gap-2 text-sm text-gray-600 ml-6">
@@ -422,7 +422,7 @@ const AppointmentBooking = () => {
   // Loading state
   if (loadingAppointments) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <p className="text-gray-600">Đang tải...</p>
@@ -433,12 +433,12 @@ const AppointmentBooking = () => {
 
   // Form đặt lịch mới
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 py-12 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+            <h1 className="text-4xl font-bold text-primary mb-2">
               Đặt lịch khám bệnh
             </h1>
             <p className="text-gray-600">
@@ -457,7 +457,7 @@ const AppointmentBooking = () => {
         </div>
 
         <Card className="shadow-2xl border-0">
-          <CardHeader className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-t-lg">
+          <CardHeader className="bg-gradient-primary text-primary-foreground rounded-t-lg">
             <CardTitle className="text-2xl flex items-center gap-2">
               <Calendar className="h-6 w-6" />
               Thông tin đặt lịch
@@ -469,7 +469,7 @@ const AppointmentBooking = () => {
                 {/* Thông tin bệnh viện */}
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 text-lg font-semibold text-gray-900 mb-4">
-                    <Building2 className="h-5 w-5 text-blue-600" />
+                    <Building2 className="h-5 w-5 text-primary" />
                     Thông tin bệnh viện
                   </div>
                   <FormField
@@ -520,7 +520,7 @@ const AppointmentBooking = () => {
                 {selectedHospitalId && (
                   <div className="space-y-4 animate-in fade-in slide-in-from-top-4 duration-500">
                     <div className="flex items-center gap-2 text-lg font-semibold text-gray-900 mb-4">
-                      <Stethoscope className="h-5 w-5 text-purple-600" />
+                      <Stethoscope className="h-5 w-5 text-primary" />
                       Thông tin bác sĩ
                     </div>
                     <FormField
@@ -680,7 +680,7 @@ const AppointmentBooking = () => {
                   <Button
                     type="submit"
                     disabled={isLoading}
-                    className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                    className="flex-1 bg-gradient-primary hover:bg-primary-dark shadow-soft transition-smooth"
                   >
                     {isLoading ? "Đang xử lý..." : "Đặt lịch ngay"}
                   </Button>
