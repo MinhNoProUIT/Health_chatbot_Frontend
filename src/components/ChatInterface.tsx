@@ -10,6 +10,7 @@ import { useChat } from "@/hooks/useChat";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { checkQueueQuery, getQueueResponse } from "@/utils/queueChatbot";
+import { checkAppointmentQuery, getAppointmentResponse, AppointmentContext } from "@/utils/appointmentChatbot";
 
 interface Message {
     id: string;
@@ -22,6 +23,7 @@ interface Message {
 const ChatInterface = () => {
     const [inputMessage, setInputMessage] = useState("");
     const [queueContext, setQueueContext] = useState<any>({});
+    const [appointmentContext, setAppointmentContext] = useState<AppointmentContext>({ flow: 'idle' });
 
     const {
         messages,
@@ -62,6 +64,7 @@ const ChatInterface = () => {
 
         const isBillingQuery = checkBillingQuery(trimmedMessage);
         const isQueueQuery = checkQueueQuery(trimmedMessage);
+        const isAppointmentQuery = checkAppointmentQuery(trimmedMessage);
 
         setInputMessage("");
 
@@ -79,6 +82,10 @@ const ChatInterface = () => {
                 (queueContext?.flow !== "idle" && isQueueQuery) ||
                 (queueContext?.flow === "idle" && isQueueQuery);
 
+            const isAppointmentMode =
+                appointmentContext?.flow !== "idle" ||
+                (appointmentContext?.flow === "idle" && isAppointmentQuery);
+
             // auto out nếu user không nói queue nữa
             if (
                 !isQueueQuery &&
@@ -88,7 +95,24 @@ const ChatInterface = () => {
                 setQueueContext({ flow: "idle", need: null });
             }
 
-            if (isQueueMode) {
+            // auto out nếu user không nói appointment nữa
+            if (
+                !isAppointmentQuery &&
+                appointmentContext?.flow !== "idle" &&
+                !isQueueMode
+            ) {
+                setAppointmentContext({ flow: "idle" });
+            }
+
+            if (isAppointmentMode && !isQueueMode) {
+                addUserMessage(trimmedMessage);
+                const result = await getAppointmentResponse(
+                    trimmedMessage,
+                    appointmentContext
+                );
+                addBotMessage(result.response);
+                setAppointmentContext(result.context);
+            } else if (isQueueMode) {
                 addUserMessage(trimmedMessage);
                 const result = await getQueueResponse(
                     trimmedMessage,
