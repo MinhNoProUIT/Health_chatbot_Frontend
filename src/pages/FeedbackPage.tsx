@@ -631,10 +631,10 @@ const FeedbackPage = () => {
                                             className="mx-auto text-muted-foreground mb-3"
                                             size={48}
                                         />
-                                        <p className="text-muted-foreground mb-2">
+                                        <p className="text-muted-foreground mb-2 text-[14px]">
                                             Bạn chưa có phản hồi nào
                                         </p>
-                                        <p className="text-sm text-muted-foreground">
+                                        <p className="text-[14px] text-muted-foreground">
                                             Hãy chia sẻ trải nghiệm của bạn
                                         </p>
                                     </CardContent>
@@ -668,7 +668,7 @@ const FeedbackPage = () => {
                                                             {feedback.isAnonymous && (
                                                                 <Badge
                                                                     variant="secondary"
-                                                                    className="bg-white/20 text-white border-white/30"
+                                                                    className="bg-white/20 text-white px-4 py-2 text-[14px] border-white/30"
                                                                 >
                                                                     Ẩn danh
                                                                 </Badge>
