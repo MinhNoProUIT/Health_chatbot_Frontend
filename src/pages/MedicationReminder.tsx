@@ -96,6 +96,8 @@ const MedicationReminder = () => {
 
   const onSubmit = async (data: MedicationForm) => {
     try {
+      // Backend sẽ tự động lấy userId từ JWT token
+      // Không cần truyền userId vào đây nữa
       await createMedication({
         name: data.name,
         dosage: data.dosage,
@@ -103,7 +105,6 @@ const MedicationReminder = () => {
         time: data.time,
         withFood: data.withFood,
         isActive: true,
-        userId: "04782488-f0a1-704c-2e53-d814ba71593b", // Replace with actual user ID
         type: "MEDICATION",
       });
 
@@ -119,7 +120,10 @@ const MedicationReminder = () => {
     } catch (error) {
       toast({
         title: "Lỗi",
-        description: "Không thể thêm thuốc. Vui lòng thử lại.",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Không thể thêm thuốc. Vui lòng thử lại.",
         variant: "destructive",
       });
     }
@@ -144,7 +148,10 @@ const MedicationReminder = () => {
     } catch (error) {
       toast({
         title: "Lỗi",
-        description: "Không thể cập nhật trạng thái. Vui lòng thử lại.",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Không thể cập nhật trạng thái. Vui lòng thử lại.",
         variant: "destructive",
       });
     }
@@ -163,7 +170,10 @@ const MedicationReminder = () => {
     } catch (error) {
       toast({
         title: "Lỗi",
-        description: "Không thể xóa thuốc. Vui lòng thử lại.",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Không thể xóa thuốc. Vui lòng thử lại.",
         variant: "destructive",
       });
     }
@@ -181,7 +191,10 @@ const MedicationReminder = () => {
     } catch (error) {
       toast({
         title: "Lỗi",
-        description: "Không thể ghi nhận. Vui lòng thử lại.",
+        description:
+          error instanceof Error
+            ? error.message
+            : "Không thể ghi nhận. Vui lòng thử lại.",
         variant: "destructive",
       });
     }

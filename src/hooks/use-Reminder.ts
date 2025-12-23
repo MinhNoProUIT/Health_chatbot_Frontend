@@ -10,6 +10,7 @@ const reminderService = new ReminderService();
 
 /**
  * Hook lấy tất cả thuốc
+ * Backend sẽ tự động lấy userId từ JWT token
  */
 export function useAllMedications() {
   const [medications, setMedications] = useState<Medication[]>([]);
@@ -43,6 +44,7 @@ export function useAllMedications() {
 
 /**
  * Hook lấy thuốc cần uống hôm nay
+ * Backend sẽ tự động lấy userId từ JWT token
  */
 export function useDailyReminders() {
   const [reminders, setReminders] = useState<DailyReminder[]>([]);
@@ -76,6 +78,7 @@ export function useDailyReminders() {
 
 /**
  * Hook lấy thống kê
+ * Backend sẽ tự động lấy userId từ JWT token
  */
 export function useMedicationStats() {
   const [stats, setStats] = useState<MedicationStats | null>(null);
@@ -107,13 +110,14 @@ export function useMedicationStats() {
 
 /**
  * Hook tạo, cập nhật, xóa thuốc
+ * Backend sẽ tự động lấy userId từ JWT token
  */
 export function useMedicationActions() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const createMedication = async (
-    medication: Omit<Medication, "id" | "createdAt" | "SK" | "PK">
+    medication: Omit<Medication, "id" | "createdAt" | "SK" | "PK" | "userId">
   ) => {
     try {
       setLoading(true);
